@@ -7,9 +7,8 @@ public class SentimentAnalysisJoker {
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         String line;
 
-        // Read each line of the text file
         while ((line = reader.readLine()) != null) {
-            words.add(line.trim().toLowerCase());  // Add each word to the set
+            words.add(line.trim().toLowerCase());  //adding each word to the set 
         }
         reader.close();
         return words;
@@ -32,7 +31,7 @@ public class SentimentAnalysisJoker {
     public static void analyzeReview(String review, Set<String> positiveWords, Set<String> negativeWords) {
         int score = calculateSentimentScore(review, positiveWords, negativeWords);
 
-        // Use conditionals to determine if the review is positive, negative, or neutral
+        // conditionals
         if (score > 0) {
             System.out.println("Positive review: " + review);
         } else if (score < 0) {
@@ -44,11 +43,11 @@ public class SentimentAnalysisJoker {
 
     public static void main(String[] args) {
         try {
-            // Load positive and negative words from text files
+            // loading neg & pos words 
             Set<String> positiveWords = loadWordsFromFile("positiveAdjectives.txt");
             Set<String> negativeWords = loadWordsFromFile("negativeAdjectives.txt.txt");
 
-            // Sample fake reviews for the movie Joker
+           // reviews (fake as of right now, changing)
             String[] reviews = {
                 "Joker was an amazing film. Absolutely brilliant performance by Joaquin Phoenix.",
                 "I found the movie boring and quite disappointing. It failed to meet my expectations.",
