@@ -90,6 +90,9 @@ public class Review {
       return 0;
     }
   }
+
+  // Testing Input/Outputs
+
   
   /**
    * Returns the ending punctuation of a string, or the empty string if there is none 
@@ -154,5 +157,7 @@ public class Review {
     } else {
       return randomNegativeAdj();
     }
-  }
+
+}
+
 }
