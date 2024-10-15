@@ -10,19 +10,18 @@ public class SentimentAnalysisJoker {
         String line;
 
         while ((line = reader.readLine()) != null) {
-<<<<<<< HEAD
             String[] parts = line.trim().split(",");  //split word and its score by comma
             if (parts.length == 2) {
                 String word = parts[0].toLowerCase();
                 double score = Double.parseDouble(parts[1]);
                 words.put(word, score);  //add word and its score to the map
-=======
+
             String[] parts = line.trim().split(","); 
             if (parts.length == 2) {
                 String word = parts[0].toLowerCase();
                 double score = Double.parseDouble(parts[1]);
                 words.put(word, score); 
->>>>>>> 83337a65f5188594c3bc4355c190486ffb64320e
+
             }
         }
         reader.close();
@@ -40,13 +39,13 @@ public class SentimentAnalysisJoker {
             word = word.trim(); 
 
             if (positiveWords.containsKey(word)) {
-<<<<<<< HEAD
+
                 score += positiveWords.get(word);  // adds pos word score 
                 System.out.println("Positive match: " + word + " (Score: " + positiveWords.get(word) + ")"); 
             } else if (negativeWords.containsKey(word)) {
                 score += negativeWords.get(word);  // adds neg word score 
                 System.out.println("Negative match: " + word + " (Score: " + negativeWords.get(word) + ")");  
-=======
+
                 score += positiveWords.get(word);  
                 System.out.println("Positive match: " + word + " (Score: " + positiveWords.get(word) + ")"); 
                 overallScore+=score; 
