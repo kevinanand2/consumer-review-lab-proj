@@ -3,7 +3,7 @@ import java.util.*;
 
 public class SentimentAnalysisJoker {
 
-    
+    //method to load words from a file into a map (word -> sentiment score)
     public static Map<String, Double> loadWordsFromFile(String fileName) throws IOException {
         Map<String, Double> words = new HashMap<>();
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
@@ -15,72 +15,55 @@ public class SentimentAnalysisJoker {
                 String word = parts[0].toLowerCase();
                 double score = Double.parseDouble(parts[1]);
                 words.put(word, score);  //add word and its score to the map
-
-            String[] parts = line.trim().split(","); 
-            if (parts.length == 2) {
-                String word = parts[0].toLowerCase();
-                double score = Double.parseDouble(parts[1]);
-                words.put(word, score); 
-
             }
         }
         reader.close();
         return words;
     }
 
-    
+    //method to calculate sentiment score of a review
     public static double calculateSentimentScore(String review, Map<String, Double> positiveWords, Map<String, Double> negativeWords) {
         double score = 0;
-        double overallScore = 0;
-        
+        // splitting words and removing punctuation
         String[] words = review.toLowerCase().split("\\W+");
 
         for (String word : words) {
-            word = word.trim(); 
+            word = word.trim();  // clean any extra spaces
 
             if (positiveWords.containsKey(word)) {
-
                 score += positiveWords.get(word);  // adds pos word score 
                 System.out.println("Positive match: " + word + " (Score: " + positiveWords.get(word) + ")"); 
             } else if (negativeWords.containsKey(word)) {
                 score += negativeWords.get(word);  // adds neg word score 
                 System.out.println("Negative match: " + word + " (Score: " + negativeWords.get(word) + ")");  
-
-                score += positiveWords.get(word);  
-                System.out.println("Positive match: " + word + " (Score: " + positiveWords.get(word) + ")"); 
-                overallScore+=score; 
-            } else if (negativeWords.containsKey(word)) {
-                score += negativeWords.get(word);  
-                System.out.println("Negative match: " + word + " (Score: " + negativeWords.get(word) + ")");
-                overallScore+=score; 
             }
         }
         return score;
     }
 
-   
+    //method to analyze a review and print if it's positive or negative
     public static void analyzeReview(String review, Map<String, Double> positiveWords, Map<String, Double> negativeWords) {
         double score = calculateSentimentScore(review, positiveWords, negativeWords);
 
+        //conditionals printing out if it's a positive or negative review
         if (score > 1) {
             System.out.println("Positive review: " + review);
-        }else if(score > -0.5 || score < 0.5){
-            System.out.println("Mixed review: " + review);
-        }else {
+        } else {
             System.out.println("Negative review: " + review);
         }
     }
 
     public static void main(String[] args) {
-      
+        //the file paths
         String positiveWordsFile = "positiveAdjectives.txt";
         String negativeWordsFile = "negativeAdjectives.txt";
 
         try {
-         
+            //loading words from adjectives with scores
             Map<String, Double> positiveWords = loadWordsFromFile(positiveWordsFile);
             Map<String, Double> negativeWords = loadWordsFromFile(negativeWordsFile);
 
+            // reviews (fake as of right now, changing)
             String[] reviews = {
                 "Why was it a musical. Terrible story line. The only thing good about it was the trials and even that was boring.",
                 "All I can say is no. One of the worst movies I’ve ever seen, walked out before it was over. Could not wait for it to end.",
@@ -95,7 +78,7 @@ public class SentimentAnalysisJoker {
                 "bad bad bad. disgrace to the joker"
             };
 
-           
+            // looping thru & analyzing each review 
             for (String review : reviews) {
                 analyzeReview(review, positiveWords, negativeWords);
                 System.out.println();
