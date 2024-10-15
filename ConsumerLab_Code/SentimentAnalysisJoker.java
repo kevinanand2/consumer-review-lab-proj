@@ -24,6 +24,7 @@ public class SentimentAnalysisJoker {
     
     public static double calculateSentimentScore(String review, Map<String, Double> positiveWords, Map<String, Double> negativeWords) {
         double score = 0;
+        double overallScore = 0;
         
         String[] words = review.toLowerCase().split("\\W+");
 
@@ -32,10 +33,12 @@ public class SentimentAnalysisJoker {
 
             if (positiveWords.containsKey(word)) {
                 score += positiveWords.get(word);  
-                System.out.println("Positive match: " + word + " (Score: " + positiveWords.get(word) + ")");  
+                System.out.println("Positive match: " + word + " (Score: " + positiveWords.get(word) + ")"); 
+                overallScore+=score; 
             } else if (negativeWords.containsKey(word)) {
                 score += negativeWords.get(word);  
-                System.out.println("Negative match: " + word + " (Score: " + negativeWords.get(word) + ")"); 
+                System.out.println("Negative match: " + word + " (Score: " + negativeWords.get(word) + ")");
+                overallScore+=score; 
             }
         }
         return score;
