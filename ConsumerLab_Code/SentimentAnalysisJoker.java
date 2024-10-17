@@ -46,17 +46,12 @@ public class SentimentAnalysisJoker {
     public static void analyzeReview(String review, Map<String, Double> positiveWords, Map<String, Double> negativeWords) {
         double score = calculateSentimentScore(review, positiveWords, negativeWords);
         //conditionals printing out if it's a positive or negative review
-        int poscount=0;
-        int negcount=0;
         if (score >0.5) {
             System.out.println("Positive review: " + review);
-            poscount+=1;
         }else {
             System.out.println("Negative review: " + review);
-            negcount+=1;
         }
-        System.out.println("Total positive reviews: " + poscount);
-        System.out.println("Total negative reviews: " + negcount);
+        
        
     }
 
