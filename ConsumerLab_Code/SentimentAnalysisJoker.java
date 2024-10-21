@@ -23,7 +23,7 @@ public class SentimentAnalysisJoker {
         return words;
     }
 
-    //method to calculate sentiment score of a review
+    //calculate sentiment score 
     public static double calculateSentimentScore(String review, Map<String, Double> positiveWords, Map<String, Double> negativeWords) {
         double score = 0;
         
@@ -32,10 +32,10 @@ public class SentimentAnalysisJoker {
         for (String word : words) {
             word = word.trim();  
             if (positiveWords.containsKey(word)) {
-                score += positiveWords.get(word);  // Add positive word score
+                score += positiveWords.get(word);  
                 System.out.println("Positive match: " + word + " (Score: " + positiveWords.get(word) + ")");  
             } else if (negativeWords.containsKey(word)) {
-                score += negativeWords.get(word);  // Add negative word score
+                score += negativeWords.get(word);  
                 System.out.println("Negative match: " + word + " (Score: " + negativeWords.get(word) + ")"); 
             }
         }
@@ -47,9 +47,12 @@ public class SentimentAnalysisJoker {
         double score = calculateSentimentScore(review, positiveWords, negativeWords);
         //conditionals printing out if it's a positive or negative review
         if (score >0.5) {
+            
             System.out.println("Positive review: " + review);
-        }else {
-            System.out.println("Negative review: " + review);
+        }else if (score < 0.9 && score > -0.3) {
+            System.out.println("Alright review: " + review);
+        }else{
+            System.out.println("Negative revew: "+ review);
         }
         
        
