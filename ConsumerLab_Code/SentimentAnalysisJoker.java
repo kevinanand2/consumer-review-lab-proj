@@ -52,7 +52,7 @@ public class SentimentAnalysisJoker {
         }else if (score < 0.9 && score > -0.3) {
             System.out.println("Alright review: " + review);
         }else{
-            System.out.println("Negative revew: "+ review);
+            System.out.println("Negative review: "+ review);
         }
         
        
